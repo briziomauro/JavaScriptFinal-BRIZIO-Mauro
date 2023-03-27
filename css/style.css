@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: NotoSans-Regular;
+    src: url(../fonts/Noto_Sans/NotoSans-Regular.ttf);
+}
+
+.indexGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 80px 900px 1fr;
+    grid-template-areas: "nav    nav    nav    nav"
+        "header header header header"
+        "main   main   main   main"
+}
+
+body {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    font-family: NotoSans-Regular !important;
+}
+
+main {
+    grid-area: main;
+
+}
+
+.imgIndex {
+    grid-area: header;
+    background-image: url(../img/fondoIndex2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cssNavbar {
+    grid-area: nav;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #111111;
+}
+
+ul {
+    margin-right: 25px;
+}
+
+ul li {
+    display: inline-block;
+    list-style-type: none;
+    line-height: 80px;
+    margin: 0px 7px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #1A191C;
+    transition: 0.5s;
+}
+
+
+.siteLogo {
+    display: block;
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0px 100px;
+
+}
+
+.backColor {
+    background-color: #1A191C;
+}
+
+.indexInfo {
+    text-align: center;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.indexInfo p {
+    color: white;
+    font-size: 60px;
+}
+
+.indexInfo h1 {
+    color: white;
+    font-weight: lighter;
+
+}
+
+.ecommerceCards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 30px 80px;
+}
+
+.productCard {
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 black;
+}
+.productCard img{
+    width: 90%;
+    height: 250px;
+}
+.buttonCart{
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    margin: 5px;
+    padding: 10px;
+    color: white;
+    background-color: #1A191C;
+}
