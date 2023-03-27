@@ -1,5 +1,6 @@
 const ecommerceProd = document.getElementById("ecommerceProd");
 const insideCart = document.getElementById("insideCart");
+const cartContainer = document.getElementById("cartContainer");
 const products = [
     {
         id: 1,
@@ -32,7 +33,7 @@ const products = [
         img: "http://apolomates.com.ar/wp-content/uploads/2016/08/Pico-de-loro-acero-1.jpg",
     },
 ];
-let cart = []
+let cart = JSON.parse(localStorage.getItem("cartStorage")) || [];
 
 products.forEach((product) => {
     let contenido = document.createElement("div");
@@ -49,15 +50,53 @@ products.forEach((product) => {
     boton.className = "buttonCart"
     contenido.append(boton);
 
-    boton.addEventListener("click", () =>{
+    boton.addEventListener("click", () => {
         cart.push({
-            id : product.id,
-            name : product.name,
-            price : product.price,
-            img : product.img,
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
         });
+        localCart();
     });
 });
-insideCart.addEventListener("click", () =>{
+insideCart.addEventListener("click", () => {
+    cartContainer.innerHTML = "";
+    cartContainer.style.display = "flex";
+    const cartHead = document.createElement("div");
+    cartHead.className = "cartHead"
+    cartHead.innerHTML = `
+    <h1 class="tituloCart">TUS PRODUCTOS</h1>
+    `;
+    cartContainer.append(cartHead);
+    const headButton = document.createElement("h2");
+    headButton.innerText = "X";
+    headButton.className = "headButtonStyle";
+    headButton.addEventListener("click", () => {
+        cartContainer.style.display = "none";
+    })
+    cartHead.append(headButton);
 
-})
+    cart.forEach((product) => {
+        let cartContent = document.createElement("div");
+        cartContent.className = "cartContentStyle"
+        cartContent.innerHTML = `
+        <img src="${product.img}">
+        <h3>${product.name}</h3>
+        <p>${product.price} $</p>
+        `;
+        cartContainer.append(cartContent)
+    });
+
+    const total = cart.reduce((acc, prod) => acc + prod.price, 0);
+    const totalPrice = document.createElement("div")
+    totalPrice.className = "totalPriceStyle"
+    totalPrice.innerHTML = `TOTAL A PAGAR: ${total} $`;
+    cartContainer.append(totalPrice);
+
+
+});
+
+const localCart = () => {
+    localStorage.setItem("cartStorage", JSON.stringify(cart))
+};
