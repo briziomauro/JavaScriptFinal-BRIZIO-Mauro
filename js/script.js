@@ -128,6 +128,7 @@ const deleteCartProduct = () => {
         return cartId !== foundId;
     });
     takeOut();
+    localCart();
 };
 
 const localCart = () => {
