@@ -103,15 +103,14 @@ const takeOut = () => {
         <h3>${product.name}</h3>
         <p>${product.price} $</p>
         <p>Cantidad: ${product.amount}</p>
+        <span class="deleteProduct"> x </span>
         `;
         cartContainer.append(cartContent);
         
-        let close = document.createElement("span");
-        close.innerText = "x";
-        close.className = "deleteProduct";
-        cartContent.append(close);
-        close.addEventListener("click", deleteCartProduct);
-
+        let close = cartContent.querySelector(".deleteProduct");
+        close.addEventListener("click", () =>{
+            deleteCartProduct(product.id);
+        });
     });
 
     const total = cart.reduce((acc, prod) => acc + prod.price, 0);
@@ -122,8 +121,8 @@ const takeOut = () => {
 };
 insideCart.addEventListener("click", takeOut);
 
-const deleteCartProduct = () => {
-    const foundId = cart.find((element)=> element.id);
+const deleteCartProduct = (id) => {
+    const foundId = cart.find((element)=> element.id === id);
     cart = cart.filter((cartId) =>{
         return cartId !== foundId;
     });
