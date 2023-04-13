@@ -40,13 +40,13 @@ const asynProd = async () =>{
                 img: product.img,
                 amount: product.amount,
             });
-            };
+            };   
             localCart();
+            
         });
     });
 };
 asynProd();
-
 
 const takeOut = () => {
     cartContainer.innerHTML = "";
@@ -100,6 +100,20 @@ const deleteCartProduct = (id) => {
     localCart();
 };
 
+const btnSwal = document.getElementsByTagName("button");
+
+btnSwal.onclick = () => {
+   Swal.fire({
+    position: 'bot-end',
+    icon: 'success',
+    title: 'Su producto se ha añadido al carrito',
+    showConfirmButton: false,
+    timer: 1500
+    })
+}
+
 const localCart = () => {
     localStorage.setItem("cartStorage", JSON.stringify(cart))
 };
+
+
