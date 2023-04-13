@@ -178,6 +178,9 @@ a:hover {
     width: 120px;
     border-radius: 8px;
 }
+.deleteProduct{
+    cursor: pointer;
+}
 .totalPriceStyle{
     font-size: 20px;
     padding: 15px;

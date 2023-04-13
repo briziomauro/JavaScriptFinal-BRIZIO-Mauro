@@ -60,7 +60,9 @@ products.forEach((product) => {
         localCart();
     });
 });
-insideCart.addEventListener("click", () => {
+
+
+const takeOut = () => {
     cartContainer.innerHTML = "";
     cartContainer.style.display = "flex";
     const cartHead = document.createElement("div");
@@ -79,13 +81,19 @@ insideCart.addEventListener("click", () => {
 
     cart.forEach((product) => {
         let cartContent = document.createElement("div");
-        cartContent.className = "cartContentStyle"
+        cartContent.className = "cartContentStyle";
         cartContent.innerHTML = `
         <img src="${product.img}">
         <h3>${product.name}</h3>
         <p>${product.price} $</p>
         `;
-        cartContainer.append(cartContent)
+        cartContainer.append(cartContent);
+        
+        let close = document.createElement("span");
+        close.innerText = "x";
+        close.className = "deleteProduct";
+        cartContent.append(close);
+
     });
 
     const total = cart.reduce((acc, prod) => acc + prod.price, 0);
@@ -93,9 +101,9 @@ insideCart.addEventListener("click", () => {
     totalPrice.className = "totalPriceStyle"
     totalPrice.innerHTML = `TOTAL A PAGAR: ${total} $`;
     cartContainer.append(totalPrice);
+};
+insideCart.addEventListener("click", takeOut);
 
-
-});
 
 const localCart = () => {
     localStorage.setItem("cartStorage", JSON.stringify(cart))
